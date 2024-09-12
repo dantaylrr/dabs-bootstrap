@@ -1,0 +1,57 @@
+# This is a Databricks asset bundle definition for my_project.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: dabs_bootstrap
+
+include:
+  - resources/*.yml
+
+artifacts:
+  package1:
+    type: whl
+    build: poetry build
+    path: src/packages/utils/
+  package2:
+    type: whl
+    build: poetry build
+    path: src/packages/get_taxis_data/
+
+targets:
+  # The 'dev' target, for development purposes. This target is the default.
+  dev:
+    # We use 'mode: development' to indicate this is a personal development copy:
+    # - Deployed resources get prefixed with '[dev my_user_name]'
+    # - Any job schedules and triggers are paused by default
+    # - The 'development' mode is used for Delta Live Tables pipelines
+    mode: development
+    default: true
+    workspace:
+      host: https://e2-demo-field-eng.cloud.databricks.com
+
+  # The 'staging' target, used for UAT deployment - we mimic production here.
+  staging:
+    # We use 'mode: production' to indicate this is a production deployment.
+    # Doing so enables strict verification of the settings below.
+    mode: production
+    workspace:
+      host: https://e2-demo-field-eng.cloud.databricks.com
+      # We always use /Shared/.bundle/${bundle.name} for all resources to make sure we only have a single copy.
+      # If this path results in an error, please make sure you have a recent version of the CLI installed.
+      root_path: /Shared/.bundle/${bundle.name}
+    run_as:
+      # This runs as your service principle in production.
+      user_name: dtServicePrinciple
+
+  # The 'prod' target, used for production deployment.
+  prod:
+    # We use 'mode: production' to indicate this is a production deployment.
+    # Doing so enables strict verification of the settings below.
+    mode: production
+    workspace:
+      host: https://e2-demo-field-eng.cloud.databricks.com
+      # We always use dtServicePrinciple for all resources to make sure we only have a single copy.
+      # If this path results in an error, please make sure you have a recent version of the CLI installed.
+      root_path: /Shared/.bundle/${bundle.name}
+    run_as:
+      # This runs as dtServicePrinciple in production.
+      user_name: dtServicePrinciple
