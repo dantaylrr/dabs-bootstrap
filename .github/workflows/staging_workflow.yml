@@ -13,7 +13,10 @@ on:
       - staging
 
 jobs:
-  test-validate-release-staging:
+  validate:
+    name: "Validate bundle"
+    runs-on: ubuntu-latest
+    
     steps:
       # Check out this repo, so that this workflow can access it.
       - uses: actions/checkout@v3
