@@ -1,0 +1,52 @@
+# NOTE - A lot of this can be configured using environments & a re-usable workflow.
+name: "Release workflow for staging environment."
+
+# Ensure that only a single job or workflow using the same concurrency group
+# runs at a time.
+concurrency: 1
+
+# Trigger this workflow whenever a pull request is opened against the repo's
+# main branch or an existing pull request's head branch is updated.
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  test-validate-release-staging:
+    steps:
+      # Check out this repo, so that this workflow can access it.
+      - uses: actions/checkout@v3
+
+      # Download the Databricks CLI.
+      # See https://github.com/databricks/setup-cli
+      - uses: databricks/setup-cli@main
+
+      # Deploy the bundle to the "qa" target as defined
+      # in the bundle's settings file.
+      - run: databricks bundle validate
+        working-directory: .
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN_STAGING }}
+          DATABRICKS_BUNDLE_ENV: staging
+
+
+  deploy:
+    name: "Deploy bundle"
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out this repo, so that this workflow can access it.
+      - uses: actions/checkout@v3
+
+      # Download the Databricks CLI.
+      # See https://github.com/databricks/setup-cli
+      - uses: databricks/setup-cli@main
+
+      # Deploy the bundle to the "qa" target as defined
+      # in the bundle's settings file.
+      - run: databricks bundle deploy -t staging
+        working-directory: .
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN_STAGING }}
+          DATABRICKS_BUNDLE_ENV: staging
