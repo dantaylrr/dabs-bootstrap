@@ -22,14 +22,14 @@ resources:
             # By default we just include the .whl file generated for the my_project package.
             # See https://docs.databricks.com/dev-tools/bundles/library-dependencies.html
             # for more information on how to add other libraries.
-            - whl: ../src/packages/get-taxis-data/dist/*.whl
+            - whl: ../src/packages/get_taxis_data/dist/*.whl
             - whl: ../src/packages/utils/dist/*.whl
         
         - task_key: dlt_pipeline_task
           # depends_on:
           #   - task_key: notebook_task
           pipeline_task:
-            pipeline_id: ${resources.pipelines.my_project_pipeline.id}
+            pipeline_id: ${resources.pipelines.my_dlt_pipeline.id}
 
       job_clusters:
         - job_cluster_key: job_cluster

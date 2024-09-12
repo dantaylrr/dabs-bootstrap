@@ -13,7 +13,10 @@ on:
       - staging
 
 jobs:
-  test-validate-release-staging:
+  validate:
+    name: "Validate bundle"
+    runs-on: self-hosted
+    
     steps:
       # Check out this repo, so that this workflow can access it.
       - uses: actions/checkout@v3
@@ -24,16 +27,21 @@ jobs:
 
       # Deploy the bundle to the "qa" target as defined
       # in the bundle's settings file.
-      - run: databricks bundle validate
+      - run: databricks bundle validate -t staging
         working-directory: .
         env:
-          DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN_STAGING }}
+          DATABRICKS_HOST: https://e2-demo-field-eng.cloud.databricks.com
+          DATABRICKS_CLIENT_ID: ${{ secrets.SP_CLIENT_ID_STAGING }}
+          DATABRICKS_CLIENT_SECRET: ${{ secrets.SP_CLIENT_SECRET_STAGING }}
           DATABRICKS_BUNDLE_ENV: staging
 
 
   deploy:
     name: "Deploy bundle"
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+
+    needs:
+      - validate
 
     steps:
       # Check out this repo, so that this workflow can access it.
@@ -48,5 +56,6 @@ jobs:
       - run: databricks bundle deploy -t staging
         working-directory: .
         env:
-          DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN_STAGING }}
+          DATABRICKS_CLIENT_ID: ${{ secrets.SP_CLIENT_ID_STAGING }}
+          DATABRICKS_CLIENT_SECRET: ${{ secrets.SP_CLIENT_SECRET_STAGING }}
           DATABRICKS_BUNDLE_ENV: staging
