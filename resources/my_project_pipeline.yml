@@ -5,7 +5,7 @@ resources:
       name: my_dlt_pipeline_${var.env}_dt
       catalog: dtdemos
       # In lower environments for local deployments, make this schema value unique for best testing experience (UC isolation)
-      target: dabs_bootstrap
+      target: dabs_bootstrap_${var.env}
       libraries:
         - notebook:
             path: ../src/dlt_pipeline.ipynb
