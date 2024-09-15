@@ -2,7 +2,7 @@
 resources:
   jobs:
     my_workflow_dt:
-      name: my_workflow_dt
+      name: my_workflow_${var.env}_dt
 
       schedule:
         # Run every day at 8 AM

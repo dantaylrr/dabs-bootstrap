@@ -2,7 +2,7 @@
 resources:
   pipelines:
     my_dlt_pipeline_dt:
-      name: my_dlt_pipeline_dt
+      name: my_dlt_pipeline_${var.env}_dt
       catalog: dtdemos
       # In lower environments for local deployments, make this schema value unique for best testing experience (UC isolation)
       target: dabs_bootstrap

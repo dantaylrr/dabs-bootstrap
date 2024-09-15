@@ -6,6 +6,12 @@ bundle:
 include:
   - resources/*.yml
 
+variables:
+  env:
+    description: Environment value for job name injection.
+    default: dev
+    type: complex
+
 artifacts:
   package1:
     type: whl
@@ -41,6 +47,9 @@ targets:
     run_as:
       # This runs as your service principle in production.
       service_principal_name: "11f28cb2-39b0-4a57-8c40-8be39f718af2"
+    # We can use a default env variable to dynamically inject "prod" into our resource names
+    variables:
+      env: staging
 
   # The 'prod' target, used for production deployment.
   prod:
@@ -55,3 +64,6 @@ targets:
     run_as:
       # This runs as dtServicePrinciple in production.
       service_principal_name: "11f28cb2-39b0-4a57-8c40-8be39f718af2"
+    # We can use a default env variable to dynamically inject "prod" into our resource names
+    variables:
+      env: prod
