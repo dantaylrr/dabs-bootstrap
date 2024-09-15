@@ -53,7 +53,7 @@ jobs:
 
       # Deploy the bundle to the "qa" target as defined
       # in the bundle's settings file.
-      - run: databricks bundle deploy -t staging
+      - run: databricks bundle deploy -t staging --auto-approve
         working-directory: .
         env:
           DATABRICKS_CLIENT_ID: ${{ secrets.SP_CLIENT_ID_STAGING }}
