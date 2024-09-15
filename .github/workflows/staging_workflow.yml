@@ -13,7 +13,6 @@ on:
       - staging
 
 jobs:
-
   test:
     name: "Test python packages"
     runs-on: self-hosted
@@ -22,17 +21,13 @@ jobs:
       # Check out this repo, so that this workflow can access it.
       - uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-
       # Download the Databricks CLI.
       # See https://github.com/databricks/setup-cli
       - uses: databricks/setup-cli@main
 
       # Deploy the bundle to the "qa" target as defined
       # in the bundle's settings file.
-      - run: python3 -m pytest -s tests/ -v
+      - run: make ci-test
         working-directory: .
         env:
           DATABRICKS_HOST: https://e2-demo-field-eng.cloud.databricks.com
@@ -44,6 +39,9 @@ jobs:
   validate:
     name: "Validate bundle"
     runs-on: self-hosted
+
+    needs:
+      - test
     
     steps:
       # Check out this repo, so that this workflow can access it.

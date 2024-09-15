@@ -47,3 +47,5 @@ setup: clean build-virtualenv
 test:
 	@echo "${GREEN}Running tests"
 	$(PYTHON) -m pytest -s tests/ -v
+
+ci-test: setup test

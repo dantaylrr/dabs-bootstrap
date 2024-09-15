@@ -27,4 +27,4 @@ wheel
 ## version of db-connect that corresponds to the Databricks Runtime version used
 ## for this project.
 ## Ideally, for shortest feedback loop, especially in CI/CD pipelines, we should use a serverless resource here.
-databricks-connect>=13.3,<13.4
+databricks-connect>=15.2,<15.3
