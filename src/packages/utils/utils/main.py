@@ -1,7 +1,7 @@
-from pyspark.sql import SparkSession, DataFrame
+from pyspark.sql import DataFrame
 from pyspark.sql.functions import current_timestamp
 
-def add_processing_timestamp(df: DataFrame = None):
+def add_processing_timestamp(df: DataFrame = None) -> DataFrame:
   """
   Function that returns the current datetime.
   """
