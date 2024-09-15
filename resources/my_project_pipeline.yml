@@ -1,8 +1,8 @@
 # The main pipeline for my_project
 resources:
   pipelines:
-    my_dlt_pipeline:
-      name: my_dlt_pipeline
+    my_dlt_pipeline_dt:
+      name: my_dlt_pipeline_dt
       catalog: dtdemos
       # In lower environments for local deployments, make this schema value unique for best testing experience (UC isolation)
       target: dabs_bootstrap

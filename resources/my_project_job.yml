@@ -1,11 +1,11 @@
 # The main job for my_project.
 resources:
   jobs:
-    my_project_job:
-      name: my_project_job
+    my_workflow_dt:
+      name: my_workflow_dt
 
       schedule:
-        # Run every day at 8:37 AM
+        # Run every day at 8 AM
         quartz_cron_expression: '0 0 8 * * ?'
         timezone_id: Europe/London
 
@@ -19,7 +19,7 @@ resources:
           notebook_task:
             notebook_path: ../src/notebook.ipynb
           libraries:
-            # By default we just include the .whl file generated for the my_project package.
+            # We include both wheel files from our packages.
             # See https://docs.databricks.com/dev-tools/bundles/library-dependencies.html
             # for more information on how to add other libraries.
             - whl: ../src/packages/get_taxis_data/dist/*.whl
@@ -29,7 +29,7 @@ resources:
           # depends_on:
           #   - task_key: notebook_task
           pipeline_task:
-            pipeline_id: ${resources.pipelines.my_dlt_pipeline.id}
+            pipeline_id: ${resources.pipelines.my_dlt_pipeline_dt.id}
 
       job_clusters:
         - job_cluster_key: job_cluster
