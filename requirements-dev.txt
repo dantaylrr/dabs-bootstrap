@@ -27,4 +27,8 @@ wheel
 ## version of db-connect that corresponds to the Databricks Runtime version used
 ## for this project.
 ## Ideally, for shortest feedback loop, especially in CI/CD pipelines, we should use a serverless resource here.
-databricks-connect>=15.2,<15.3
+databricks-connect==15.1
+
+## Pre-commit for commit hooks - if you do not want to use or enable pre-commit hooks, comment out this line 
+## & remove pre-commit install from `setup` in Makefile
+pre-commit==3.1
