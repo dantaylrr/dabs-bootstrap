@@ -38,7 +38,8 @@ build-virtualenv:
 
 	@echo "${GREEN}Building root environment for local testing & databricks connect"
 	. $(VENV)/bin/activate && \
-	pip install -r requirements-dev.txt
+	pip install -r requirements-dev.txt && \
+	pre-commit install
 
 .PHONY: setup
 setup: clean build-virtualenv
