@@ -6,12 +6,14 @@ bundle:
 include:
   - resources/*.yml
 
+# Define re-usable complex variables
 variables:
   env:
     description: Environment value for job name injection.
     default: dev
     type: complex
 
+# Build artifacts using poetry, in this case we only have two
 artifacts:
   package1:
     type: whl
@@ -23,7 +25,7 @@ artifacts:
     path: src/packages/get_taxis_data/
 
 targets:
-  # The 'dev' target, for development purposes. This target is the default.
+  # The 'dev' target, for development purposes. This target is the default
   dev:
     # We use 'mode: development' to indicate this is a personal development copy:
     # - Deployed resources get prefixed with '[dev my_user_name]'
@@ -34,32 +36,31 @@ targets:
     workspace:
       host: https://e2-demo-field-eng.cloud.databricks.com
 
-  # The 'staging' target, used for UAT deployment - we mimic production here.
+  # The 'staging' target, used for UAT deployment - we mimic production here
   staging:
-    # We use 'mode: production' to indicate this is a production deployment.
-    # Doing so enables strict verification of the settings below.
+    # We use 'mode: production' to indicate this is a production deployment
+    # Doing so enables strict verification of the settings below
     mode: production
     workspace:
       host: https://e2-demo-field-eng.cloud.databricks.com
-      # We always use /Shared/.bundle/${bundle.name} for all resources to make sure we only have a single copy.
-      # If this path results in an error, please make sure you have a recent version of the CLI installed.
+      # We always use /Shared/.bundle/${bundle.name} for all resources to make sure we only have a single copy
       root_path: /Shared/.bundle/${bundle.name}
     run_as:
-      # This runs as your service principle in production.
+      # This runs as your service principle in staging & production
       service_principal_name: "11f28cb2-39b0-4a57-8c40-8be39f718af2"
     # We can use a default env variable to dynamically inject "prod" into our resource names
     variables:
       env: staging
 
-  # The 'prod' target, used for production deployment.
+  # The 'prod' target, used for production deployment
   prod:
-    # We use 'mode: production' to indicate this is a production deployment.
-    # Doing so enables strict verification of the settings below.
+    # We use 'mode: production' to indicate this is a production deployment
+    # Doing so enables strict verification of the settings below
     mode: production
     workspace:
       host: https://e2-demo-field-eng.cloud.databricks.com
-      # We always use dtServicePrinciple for all resources to make sure we only have a single copy.
-      # If this path results in an error, please make sure you have a recent version of the CLI installed.
+      # We always use dtServicePrinciple for all resources to make sure we only have a single copy
+      # If this path results in an error, please make sure you have a recent version of the CLI installed
       root_path: /Shared/.bundle/${bundle.name}
     run_as:
       # This runs as dtServicePrinciple in production.

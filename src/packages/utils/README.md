@@ -1,3 +1,5 @@
-# **get_current_datetime**
+# **utils**
 
-A python package that gets the current datetime.
+## **Functions.**
+
+* **add_processing_timestamp** - Adds the current timestamp as a column to a dataframe.
