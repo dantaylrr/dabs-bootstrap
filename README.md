@@ -4,6 +4,15 @@ This project aims to give users an idea of how you can structure your DABs git r
 
 **This repo is only intended to be used for demonstrative purposes. Myself & Databricks are not liable for any short-comings in this project.**
 
+## Prerequisites
+
+1\. Python versions & environments are managed via. `pyenv`. You can [install pyenv](https://github.com/pyenv/pyenv?tab=readme-ov-file#installation) using a package manager such as [homebrew](https://docs.brew.sh/):
+
+```
+brew update
+brew install pyenv
+```
+
 ## Getting started
 
 1\. Install the Databricks CLI from https://docs.databricks.com/dev-tools/cli/databricks-cli.html
@@ -15,7 +24,7 @@ This project aims to give users an idea of how you can structure your DABs git r
 
 2b. Setup your default Databricks profile in `.databrickscfg` so that any validation & deployment requests are made against that workspace:
    ```
-   host = <you_workspace_uri>
+   host = <your_workspace_uri>
    serverless_compute_id = auto
    token = <your_personal_access_token>
    ```
@@ -66,3 +75,12 @@ The intended workflow for this project / demo looks something like the following
 ## Current limitations (internal usage).
 
 * You cannot deploy from github actions outside of a self-hosted runner, as `E2-Demo-Field-Eng` does not allow for remote deployments outside of the companies' VPN.
+
+## What's next?
+
+* **Review & identify gaps in DE workloads that are not covered here:**
+   * Environments for serverless workloads? \
+   . \
+   . \
+   .
+* **ML / GenAI Ops?**

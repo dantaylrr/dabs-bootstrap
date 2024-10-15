@@ -1,3 +1,3 @@
-# **get_current_user**
+# **get_taxis_data**
 
-Python package that gets the current user in a Databricks environment.
+This simple python package returns taxi data from the sample data that is pre-loaded in a databricks workspace.
