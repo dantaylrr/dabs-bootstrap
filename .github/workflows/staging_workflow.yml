@@ -43,7 +43,7 @@ jobs:
 
   validate:
     name: "Validate bundle"
-    runs-on: linux-ubuntu-latest
+    runs-on: self-hosted
 
     # Only run if tests pass
     needs:
@@ -70,7 +70,7 @@ jobs:
 
   deploy:
     name: "Deploy bundle"
-    runs-on: linux-ubuntu-latest
+    runs-on: self-hosted
 
     # Only run if validate succeeds
     needs:
