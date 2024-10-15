@@ -80,10 +80,10 @@ jobs:
       # Check out this repo
       - uses: actions/checkout@v3
 
-      # Use the specified python version for poetry builds
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.10.14'
+      # In a production environment you would need this with ubuntu runners
+      # - uses: actions/setup-python@v5
+      #   with:
+      #     python-version: '3.10.14'
         # Likely a nicer way to do this?
       - run: python3 -m pip install poetry
 
