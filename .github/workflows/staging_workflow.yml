@@ -15,17 +15,17 @@ on:
 jobs:
   test:
     name: "Test python packages"
-    # The linux-ubuntu-latest runner is provided in the field-eng EMU org
+    # Run on a self-hosted runner so we can deploy to E2 Demo without IP errors
     runs-on: self-hosted
 
     steps:
       # Check out this repo
       - uses: actions/checkout@v3
 
-      # Use the specified python version
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.10.14'
+      # In a production environment you would need this with ubuntu runners
+      # - uses: actions/setup-python@v5
+      #   with:
+      #     python-version: '3.10.14'
 
       # Download the Databricks CLI for bundle commands
       - uses: databricks/setup-cli@main
