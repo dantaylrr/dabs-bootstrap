@@ -1,7 +1,7 @@
 # The main pipeline for my_project
 resources:
   pipelines:
-    my_dlt_pipeline_dt:
+    my_dlt_pipeline:
       name: my_dlt_pipeline_${var.env}_dt
       catalog: dtdemos
       # In lower environments for local deployments, make this schema value unique for best testing experience (UC isolation)

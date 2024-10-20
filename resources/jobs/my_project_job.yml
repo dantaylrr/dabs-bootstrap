@@ -1,7 +1,7 @@
 # The main job for my_project.
 resources:
   jobs:
-    my_workflow_dt:
+    my_workflow:
       name: my_workflow_${var.env}_dt
 
       schedule:
@@ -29,7 +29,7 @@ resources:
           depends_on:
             - task_key: standard_job_task
           pipeline_task:
-            pipeline_id: ${resources.pipelines.my_dlt_pipeline_dt.id}
+            pipeline_id: ${resources.pipelines.my_dlt_pipeline.id}
 
       job_clusters:
         - job_cluster_key: job_cluster

@@ -1,7 +1,7 @@
 # The main configuration for serverless task
 resources:
   jobs:
-    env_dependencies_job:
+    my_serverless_workflow:
       name: my_serverless_workflow_${var.env}_dt
 
       schedule:
@@ -20,7 +20,7 @@ resources:
 
           # The key that references an environment spec in a job.
           environment_key: default
-      
-      environments: 
+
+      environments:
         - environment_key: default
           spec: ${var.default_serverless_env_spec}
