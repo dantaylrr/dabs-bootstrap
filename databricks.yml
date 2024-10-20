@@ -4,7 +4,8 @@ bundle:
   name: dabs_bootstrap
 
 include:
-  - resources/*.yml
+  - resources/jobs/*.yml
+  - resources/pipelines/*.yml
 
 # Define re-usable complex variables
 variables:

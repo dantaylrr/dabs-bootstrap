@@ -8,7 +8,7 @@ resources:
       target: dabs_bootstrap_${var.env}
       libraries:
         - notebook:
-            path: ../src/pipelines/dlt_pipeline.ipynb
+            path: ../../src/pipelines/dlt_pipeline.ipynb
 
       configuration:
         bundle.sourcePath: /Workspace/${workspace.file_path}/src
