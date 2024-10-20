@@ -11,16 +11,25 @@ include:
 variables:
   env:
     description: Environment value for job name injection.
-    default: dev
     type: complex
+    default: dev
+  default_serverless_env_spec:
+      description: Default serverless environment configuration (example).
+      type: complex
+      default:
+        client: "1"
+        dependencies:
+          - -r "/Workspace${workspace.file_path}/environments/default-requirements.txt"
+          - ../../src/packages/get_taxis_data/dist/*.whl
+          - ../../src/packages/utils/dist/*.whl
 
 # Build artifacts using poetry, in this case we only have two
 artifacts:
-  package1:
+  utils_package:
     type: whl
     build: poetry build
     path: src/packages/utils/
-  package2:
+  get_taxis_data_package:
     type: whl
     build: poetry build
     path: src/packages/get_taxis_data/
