@@ -15,7 +15,7 @@ def main():
     # Use our packages to read in taxi data & create a processing timestamp column
     df = get_taxis_data(spark)
     df = add_processing_timestamp(df=df)
-    df.show(3)
+    df.show(5)
 
 
 if __name__ == "__main__":
