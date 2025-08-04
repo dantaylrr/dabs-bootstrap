@@ -17,21 +17,21 @@ variables:
       description: Default serverless environment configuration (example).
       type: complex
       default:
-        client: "1"
+        client: "2"
         dependencies:
-          - -r "/Workspace${workspace.file_path}/environments/default-requirements.txt"
+          - -r ${workspace.file_path}/environments/default-requirements.txt
           - ../../src/packages/get_taxis_data/dist/*.whl
-          - ../../src/packages/utils/dist/*.whl
+          - ../../src/packages/spark_utils/dist/*.whl
 
 # Build artifacts using poetry, in this case we only have two
 artifacts:
-  utils_package:
+  spark_utils_package:
     type: whl
-    build: poetry build
-    path: src/packages/utils/
+    build: uv build --out-dir ./dist/
+    path: src/packages/spark_utils/
   get_taxis_data_package:
     type: whl
-    build: poetry build
+    build: uv build --out-dir ./dist/
     path: src/packages/get_taxis_data/
 
 targets:

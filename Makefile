@@ -31,15 +31,14 @@ clean:
 build-local-virtualenv:
 ### Install python version locally using pyenv & set it to local version used
 ### for development.
-	@echo "${GREEN}Installing default python version using pyenv."
+	@echo "${GREEN}Installing default python version using pyenv"
 	pyenv install -s $(PYTHON_VERSION)
 	pyenv local $(PYTHON_VERSION)
 	@echo "${GREEN}Creating virtual environment."
-	test -d $(VENV) || $(HOME)/.pyenv/versions/$(PYTHON_VERSION)/bin/python -m venv $(VENV)
+	uv sync
 
-	@echo "${GREEN}Building root environment for local testing & databricks connect"
+	@echo "${GREEN}Building root environment"
 	. $(VENV)/bin/activate && \
-	pip install -r requirements-dev.txt && \
 	pre-commit install
 
 .PHONY: setup

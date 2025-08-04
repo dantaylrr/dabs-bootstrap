@@ -1,6 +1,6 @@
 from importlib.metadata import version
 from get_taxis_data.main import get_taxis_data
-from utils.main import add_processing_timestamp
+from spark_utils.main import add_processing_timestamp
 
 
 def get_package_versions(packages: dict[str]):

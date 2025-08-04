@@ -23,7 +23,7 @@ resources:
             # See https://docs.databricks.com/dev-tools/bundles/library-dependencies.html
             # for more information on how to add other libraries.
             - whl: ../../src/packages/get_taxis_data/dist/*.whl
-            - whl: ../../src/packages/utils/dist/*.whl
+            - whl: ../../src/packages/spark_utils/dist/*.whl
 
         - task_key: dlt_pipeline_task
           depends_on:

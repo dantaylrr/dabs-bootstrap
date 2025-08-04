@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spark_utils"
+requires-python = ">=3.10"
+description = "Re-usable spark_utils library."
+version = "0.1.0"
+
+# Dependencies in case the output wheel file is used as a library dependency.
+# For defining dependencies, when this package is used in Databricks, see:
+# https://docs.databricks.com/dev-tools/bundles/library-dependencies.html
+#
+# Example:
+# dependencies = [
+#     "requests==x.y.z",
+# ]
+dependencies = [
+]
+
+[project.entry-points.packages]
+main = "spark_utils.main:add_processing_timestamp"

@@ -22,10 +22,13 @@ jobs:
       # Check out this repo
       - uses: actions/checkout@v3
 
-      # In a production environment you would need this with ubuntu runners
-      # - uses: actions/setup-python@v5
-      #   with:
-      #     python-version: '3.10.14'
+      # Use the specified python version
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10.14'
+      # Install uv for builds
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
 
       # Download the Databricks CLI for bundle commands
       - uses: databricks/setup-cli@main
@@ -80,12 +83,13 @@ jobs:
       # Check out this repo
       - uses: actions/checkout@v3
 
-      # In a production environment you would need this with ubuntu runners
-      # - uses: actions/setup-python@v5
-      #   with:
-      #     python-version: '3.10.14'
-        # Likely a nicer way to do this?
-      - run: python3 -m pip install poetry
+      # Use the specified python version
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10.14'
+      # Install uv for builds
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
 
       # Download the Databricks CLI for bundle commands
       - uses: databricks/setup-cli@main
@@ -95,6 +99,7 @@ jobs:
       - run: databricks bundle deploy -t staging --auto-approve
         working-directory: .
         env:
+          DATABRICKS_HOST: https://e2-demo-field-eng.cloud.databricks.com
           DATABRICKS_CLIENT_ID: ${{ secrets.SP_CLIENT_ID_STAGING }}
           DATABRICKS_CLIENT_SECRET: ${{ secrets.SP_CLIENT_SECRET_STAGING }}
           DATABRICKS_BUNDLE_ENV: staging

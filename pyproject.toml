@@ -1,0 +1,38 @@
+[project]
+name = "dabs_emerging_bootstrap"
+requires-python = ">=3.10"
+description = "Demo for DABs mono-repo projects."
+version = "0.1.0"
+
+[tool.uv]
+## Dependencies for local development
+dev-dependencies = [
+    "databricks-bundles==0.262.0",
+    "databricks-dlt",
+    "pytest",
+    "wheel",
+    ## Pre-commit for commit hooks - if you do not want to use or enable pre-commit hooks, comment out this line 
+    ## & remove pre-commit install from `setup` in Makefile
+    "pre-commit==3.1",
+
+
+
+    ## databricks-connect can be used to run parts of this project locally.
+    ## See https://docs.databricks.com/dev-tools/databricks-connect.html.
+    ##
+    ## Uncomment line below to install a version of db-connect that corresponds to
+    ## the Databricks Runtime version used for this project.
+    "databricks-connect>=15.4,<15.5",
+]
+
+override-dependencies = [
+    # pyspark package conflicts with 'databricks-connect'
+    "pyspark; sys_platform == 'never'",
+]
+
+[tool.uv.workspace]
+members = [
+    "src/packages/*",
+    "src/packages/get_taxis_data/",
+    "src/packages/spark_utils/"
+]
