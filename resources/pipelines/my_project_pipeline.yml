@@ -11,6 +11,6 @@ resources:
             path: ../../src/pipelines/dlt_pipeline.ipynb
 
       configuration:
-        bundle.sourcePath: /Workspace/${workspace.file_path}/src
-        dlt.dependencies.get_taxis_data: /Workspace${workspace.file_path}/src/packages/get_taxis_data
-        dlt.dependencies.utils: /Workspace${workspace.file_path}/src/packages/utils
+        bundle.sourcePath: ${workspace.file_path}/src
+        dlt.dependencies.get_taxis_data: ${workspace.file_path}/src/packages/get_taxis_data
+        dlt.dependencies.spark_utils: ${workspace.file_path}/src/packages/spark_utils

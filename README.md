@@ -13,6 +13,12 @@ brew update
 brew install pyenv
 ```
 
+2\. [uv](https://docs.astral.sh/uv/) is used for project builds. You can [install uv by following the documentation](https://docs.astral.sh/uv/getting-started/installation/):
+
+```
+brew install uv
+```
+
 ## Getting started
 
 1\. Install the Databricks CLI from https://docs.databricks.com/dev-tools/cli/databricks-cli.html

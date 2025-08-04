@@ -1,7 +1,7 @@
 import pytest
 from pyspark.sql import SparkSession, DataFrame
 from src.packages.get_taxis_data.get_taxis_data.main import get_spark
-from src.packages.utils.utils.main import *
+from src.packages.spark_utils.spark_utils.main import *
 
 
 @pytest.fixture
